@@ -5,7 +5,7 @@ import { IPokemonObject } from 'src/app/interfaces/pokemon.interface';
 @Component({
   selector: 'app-poke-details',
   templateUrl: './poke-details.component.html',
-  styleUrls: ['./poke-details.component.css']
+  styleUrls: ['./poke-details.component.scss']
 })
 export class PokeDetailsComponent implements OnInit {
   pokemonId: string | undefined;

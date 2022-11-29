@@ -7,7 +7,7 @@ import { IPokemonObject } from 'src/app/interfaces/pokemon.interface';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.css']
+  styleUrls: ['./topbar.component.scss']
 })
 export default class TopbarComponent implements OnInit, OnDestroy  {
   @Output() searchPokemonEvent = new EventEmitter <string> ()

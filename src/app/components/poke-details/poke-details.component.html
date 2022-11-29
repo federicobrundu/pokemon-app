@@ -4,17 +4,17 @@
 <ng-container *ngIf="!showSpinner">
   <h1>Dettaglio Pokemon</h1>
   <div class="container">
-    <div class="details-box">
-      <div class="details">
-        <h1 class="bold" style="text-align:start">{{pokemonObject.name.toUpperCase()}}</h1>
-        <h2 class="bold">Tipo</h2>
-        <h3 class="pokemon-types" *ngFor="let tipo of pokemonObject.types">{{tipo.type.name}}</h3>
-        <h2 class="bold">Peso</h2>
-        <h3>{{pokemonObject.weight}} Kg</h3>
-        <h2 class="bold">Esperienza Base</h2>
-        <h3>{{pokemonObject.base_experience}}</h3>
+    <div class="container__details-box">
+      <div class="container__details">
+        <h1 class="container__title">{{pokemonObject.name.toUpperCase()}}</h1>
+        <h2 class="container__title">Tipo</h2>
+        <h3 class="container__pokemon-details" *ngFor="let tipo of pokemonObject.types">{{tipo.type.name}}</h3>
+        <h2 class="container__title">Peso</h2>
+        <h3 class="container__pokemon-details">{{pokemonObject.weight}} Kg</h3>
+        <h2 class="container__title">Esperienza Base</h2>
+        <h3 class="container__pokemon-details"> {{pokemonObject.base_experience}}</h3>
       </div>
-      <img class="detail-img"
+      <img class="container__detail-img"
         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemonObject.id}}.png" alt="">
     </div>
   </div>

@@ -1,0 +1,30 @@
+.top-bar{
+    width: 100%;
+    justify-content: space-around;
+    height: 60px;
+    &__link{
+        text-decoration: none;
+        color: #fff;
+        font-size: 22px;
+        height: 60%;
+    }
+    
+    &__title{
+        font-size: 20px;
+        font-weight: 500;   
+    }   
+    &__text-search{
+        height: 50%;
+        padding-left: 6px;
+        border: 0;
+        border-radius: 8px;
+        font-weight: 400;
+    }
+
+}
+
+
+
+/* .poke-list .poke-list__title{
+
+} */
