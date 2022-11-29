@@ -3,19 +3,19 @@
 
 <ng-container *ngIf="!showSpinner">
   <h1>Dettaglio Pokemon</h1>
-  <div class="container">
-    <div class="container__details-box">
+    <div class="container">
+      
       <div class="container__details">
-        <h1 class="container__title">{{pokemonObject.name.toUpperCase()}}</h1>
-        <h2 class="container__title">Tipo</h2>
-        <h3 class="container__pokemon-details" *ngFor="let tipo of pokemonObject.types">{{tipo.type.name}}</h3>
-        <h2 class="container__title">Peso</h2>
-        <h3 class="container__pokemon-details">{{pokemonObject.weight}} Kg</h3>
-        <h2 class="container__title">Esperienza Base</h2>
-        <h3 class="container__pokemon-details"> {{pokemonObject.base_experience}}</h3>
+        <h1 class="container__details-title">{{pokemonObject.name.toUpperCase()}}</h1>
+        <h2 class="container__details-title">Tipo</h2>
+        <h3 class="container__details-spec" *ngFor="let tipo of pokemonObject.types">{{tipo.type.name}}</h3>
+        <h2 class="container__details-title">Peso</h2>
+        <h3 class="container__details-spec">{{pokemonObject.weight}} Kg</h3>
+        <h2 class="container__details-title">Esperienza Base</h2>
+        <h3 class="container__details-spec"> {{pokemonObject.base_experience}}</h3>
       </div>
-      <img class="container__detail-img"
+      
+      <img class="container__img"
         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemonObject.id}}.png" alt="">
     </div>
-  </div>
 </ng-container>
