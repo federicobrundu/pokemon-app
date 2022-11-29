@@ -1,0 +1,22 @@
+<app-topbar (searchPokemonEvent)="onPokemonSearch($event)"></app-topbar>
+
+<mat-spinner value="100" class="spinner" *ngIf="showSpinner"></mat-spinner>
+
+<div class="poke-list">
+  <h2 class="poke-list__title--blue" style="text-align: center;">Lista Pokemon</h2>
+  <div class="container">
+    <ng-container *ngFor="let pokemon of pokemonListView; let i = index ">
+      <mat-card *ngIf="(i < numberOfPokemon) || pokemonSearched" class="example-card" >
+          <img mat-card-image
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.entry_number}}.png">
+          <mat-card-title class="title-card"> #{{pokemon.entry_number}} || {{pokemon.pokemon_species.name.toUpperCase()}}
+        </mat-card-title>
+        <mat-card-actions>
+          <a [routerLink]="pokemon.routerLink">Dettagli</a>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+    <button (click)="showMore()" *ngIf="!pokemonSearched" class='btn-more' mat-raised-button color="primary">Mostra Altro</button>
+    <button (click)="showLess()" *ngIf="numberOfPokemon && !pokemonSearched" class='btn-more' mat-raised-button color="primary">Mostra Meno</button>
+  </div>
+</div>

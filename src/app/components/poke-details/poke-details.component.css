@@ -1,0 +1,50 @@
+h1{
+    text-align: center;
+}
+h2,h3{
+    text-align: start;
+    margin-top: 20px;
+}
+.bold{
+    font-weight: 800;
+}
+.container{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}  
+.details-box{
+    width: 70%;
+    display: flex;
+    margin: auto;
+    border: 1px solid #000;
+    margin-top: 10px;
+    border-radius: 14px;
+    -webkit-box-shadow: 0px 0px 38px 3px rgba(0,0,0,0.27);
+    -moz-box-shadow: 0px 0px 38px 3px rgba(0,0,0,0.27);
+    box-shadow: 0px 0px 38px 3px rgba(0,0,0,0.27);
+}
+.pokemon-types{
+    text-transform: capitalize;
+}
+.detail-img{
+    width: 55%;
+    padding: 10px;
+    height: 40%;
+    background-position: center;    
+}
+.details{
+    width: 60%;
+    margin: auto;
+    padding: 30px;
+    
+}
+.spinner{
+    width: 100px!important;
+    height:100px!important;
+    margin: auto;
+    margin-top: 20px;
+}

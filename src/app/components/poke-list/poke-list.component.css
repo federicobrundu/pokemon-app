@@ -1,0 +1,72 @@
+h1{
+    margin-top: 15px;
+}
+h2,h3{
+    text-align: start;
+    margin-top: 20px;
+}
+.bold{
+    font-weight: 800;
+}
+.btn-more{
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.title-card{
+    font-size: 14px;
+    width: 100%;
+
+}
+.example-card {
+    width: 18%;
+    flex:0 0 auto;
+    margin: auto;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.27);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.27);
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.27);
+    padding: 10px;
+}
+.container{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}  
+
+
+.spinner{
+    width: 100px!important;
+    height:100px!important;
+    margin: auto;
+    margin-top: 20px;
+}
+
+@media(max-width: 550px){
+    .title-card{
+        font-size: 9px!important;
+        word-break:keep-all;
+    }
+    .example-card {
+        width: 30%;
+        flex:0 0 auto;
+        margin: auto;
+        margin-right: 10px;
+        margin-top: 20px;
+        padding: 10px;
+    }
+    .container{
+        width: 100%!important;
+    }
+}
+@media(max-width: 950px){
+    .title-card{
+        font-size: 11px!important;
+        word-break:keep-all;
+    }
+}
