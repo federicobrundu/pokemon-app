@@ -14,15 +14,15 @@
         width: 60%;
         margin: auto;
         padding: 30px;
-        &-title{
-            text-align: start;
-            margin-top: 20px;
-            font-weight: 800;
-        }
-        &-spec{
-            text-align: start;
-            text-transform: capitalize;
-        }
+    }
+    &__details-title{
+        text-align: start;
+        margin-top: 20px;
+        font-weight: 800;
+    }
+    &__details-spec{
+        text-align: start;
+        text-transform: capitalize;
     }
     &__img{
         width: 55%;

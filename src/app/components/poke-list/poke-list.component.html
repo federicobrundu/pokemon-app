@@ -6,17 +6,22 @@
   <h2 class="poke-list__title">Lista Pokemon</h2>
   <div class="poke-list__container">
     <ng-container *ngFor="let pokemon of pokemonListView; let i = index ">
-      <mat-card *ngIf="(i < numberOfPokemon) || pokemonSearched" class="poke-list__container__card" >
+      <mat-card *ngIf="(i < numberOfPokemon) || pokemonSearched" class="poke-list__card" >
           <img mat-card-image
           src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.entry_number}}.png">
-          <mat-card-title class="poke-list__container__title-card"> #{{pokemon.entry_number}} || {{pokemon.pokemon_species.name.toUpperCase()}}
+          <mat-card-title class="poke-list__title-card"> #{{pokemon.entry_number}} || {{pokemon.pokemon_species.name.toUpperCase()}}
         </mat-card-title>
-        <mat-card-actions>
+        <mat-card-actions class="poke-list__actions">
           <a [routerLink]="pokemon.routerLink">Dettagli</a>
+            <button class="poke-list__btn-delete" (click)="removeFavorite(pokemon)"><mat-icon >cancel</mat-icon></button>
+            <button class="poke-list__btn-delete" (click)="addFavorite(pokemon)"><mat-icon >favorite</mat-icon></button>
         </mat-card-actions>
       </mat-card>
     </ng-container>
-    <button (click)="showMore()" *ngIf="!pokemonSearched" class='poke-list__container__btn-more' mat-raised-button color="primary">Mostra Altro</button>
-    <button (click)="showLess()" *ngIf="numberOfPokemon && !pokemonSearched" class='poke-list__container__btn-more' mat-raised-button color="primary">Mostra Meno</button>
+    <button (click)="showMore()" *ngIf="!pokemonSearched" class='poke-list__btn-more' mat-raised-button color="primary">Mostra Altro</button>
+    <button (click)="showLess()" *ngIf="numberOfPokemon && !pokemonSearched" class='poke-list__btn-more' mat-raised-button color="primary">Mostra Meno</button>
   </div>
 </div>
+<router-outlet></router-outlet>
+
+<!-- <app-favourite-pokemon></app-favourite-pokemon> -->

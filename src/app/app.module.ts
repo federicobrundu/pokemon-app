@@ -9,6 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -19,6 +20,7 @@ import { PokeListComponent } from './components/poke-list/poke-list.component';
 import TopbarComponent from './components/topbar/topbar.component';
 import { PokeDetailsComponent } from './components/poke-details/poke-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FavouritePokemonComponent } from './components/favourite-pokemon/favourite-pokemon.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PokeListComponent,
     TopbarComponent,
     PokeDetailsComponent,
+    FavouritePokemonComponent,
   ],
   imports: [
     FormsModule,
@@ -40,6 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatCardModule,
     MatProgressSpinnerModule,
+    MatBadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

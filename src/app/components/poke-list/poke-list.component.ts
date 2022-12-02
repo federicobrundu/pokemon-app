@@ -1,7 +1,9 @@
 import { ViewEncapsulation } from '@angular/compiler';
-import {Component,Input} from '@angular/core';
+import {Component,EventEmitter,Input, OnChanges, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import { from } from 'rxjs';
 import { IMappedPokemonEntry, IPokemon, IPokemonEntry } from 'src/app/interfaces/pokemon.interface';
+import { FavouriteService } from 'src/app/service/favourite.service';
 import {PokemonService} from '../../service/pokemon.service';
 
 @Component({
@@ -10,21 +12,36 @@ import {PokemonService} from '../../service/pokemon.service';
   styleUrls: ['./poke-list.component.scss'],
 })
 
-export class PokeListComponent {
+export class PokeListComponent implements OnInit {
+
   pokemonList: IMappedPokemonEntry[]= [];
   pokemonListView: IMappedPokemonEntry[]= [];
   pokemonSearched: string;
   showSpinner: boolean = false
   numberOfPokemon = 0;
+  ind: any;
+  myFavorite: IPokemonEntry[] = []
 
-
-  constructor(private pokemonService: PokemonService, private route: ActivatedRoute) {}
+  constructor(private pokemonService: PokemonService, private route: ActivatedRoute, private favService: FavouriteService) {}
 
   onPokemonSearch(pokemon: string) {
+    console.log(this.pokemonList)
     this.pokemonSearched = pokemon;
     this.pokemonListView = this.pokemonList
       .filter((pokemon:IMappedPokemonEntry) => pokemon.pokemon_species.name.includes(this.pokemonSearched))
-      console.log(this.pokemonListView)
+    }
+
+  addFavorite(pokemon:IPokemonEntry){
+    this.myFavorite = this.favService.setPoke(pokemon)
+    console.log(this.myFavorite)
+  }
+
+  removeFavorite(pokemon:IPokemonEntry){
+    if(this.myFavorite.find((item:IPokemonEntry)=>{
+      item.pokemon_species.name === item.pokemon_species.name
+      this.myFavorite = this.favService.removePoke(pokemon)    
+    })){
+    }console.log(this.myFavorite)
   }
 
   showMore(): void {
@@ -36,10 +53,10 @@ export class PokeListComponent {
 
   ngOnInit() {
     this.pokemonService.loadPokemon()
-      .subscribe((val: IPokemon) => {
-        this.pokemonList = this.mapPokemonEntry(val.pokemon_entries);
-        this.pokemonListView = this.pokemonList;
-      })
+    .subscribe((val: IPokemon) => {
+      this.pokemonList = this.mapPokemonEntry(val.pokemon_entries);
+      this.pokemonListView = this.pokemonList;
+    })
   }
   mapPokemonEntry(pokemonEntry: IPokemonEntry[]):IMappedPokemonEntry[]{
     return pokemonEntry.map((pokemon: IPokemonEntry)=> ({

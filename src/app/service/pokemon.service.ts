@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import { Observable } from 'rxjs';
-import { IPokemon, IPokemonObject } from '../interfaces/pokemon.interface';
+import { IMappedPokemonEntry, IPokemon, IPokemonObject } from '../interfaces/pokemon.interface';
 
 // ENDPOINTS 
 const API = 'https://pokeapi.co/api/v2/pokedex/2/';
@@ -20,6 +20,5 @@ export class PokemonService {
   loadPokemon():Observable<IPokemon> {
     return this.http.get<IPokemon>(API)
   }
-  
 
 }
