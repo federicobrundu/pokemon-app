@@ -1,7 +1,7 @@
 import { ViewEncapsulation } from '@angular/compiler';
 import {Component,EventEmitter,Input, OnChanges, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { from } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, from } from 'rxjs';
 import { IMappedPokemonEntry, IPokemon, IPokemonEntry } from 'src/app/interfaces/pokemon.interface';
 import { FavouriteService } from 'src/app/service/favourite.service';
 import {PokemonService} from '../../service/pokemon.service';
@@ -19,35 +19,33 @@ export class PokeListComponent implements OnInit {
   pokemonSearched: string;
   showSpinner: boolean = false
   numberOfPokemon = 0;
-  ind: any;
-  myFavorite: IPokemonEntry[] = []
+  myFavorite$: BehaviorSubject<IPokemonEntry[]>; 
+
+  favN: number
 
   constructor(private pokemonService: PokemonService, private route: ActivatedRoute, private favService: FavouriteService) {}
 
-  onPokemonSearch(pokemon: string) {
+  onPokemonSearch(pokemon: string){
     console.log(this.pokemonList)
     this.pokemonSearched = pokemon;
     this.pokemonListView = this.pokemonList
       .filter((pokemon:IMappedPokemonEntry) => pokemon.pokemon_species.name.includes(this.pokemonSearched))
-    }
+  }
 
   addFavorite(pokemon:IPokemonEntry){
-    this.myFavorite = this.favService.setPoke(pokemon)
-    console.log(this.myFavorite)
+    this.favService.setPoke(pokemon)
+    this.favN = this.myFavorite$.value.length;
   }
 
   removeFavorite(pokemon:IPokemonEntry){
-    if(this.myFavorite.find((item:IPokemonEntry)=>{
-      item.pokemon_species.name === item.pokemon_species.name
-      this.myFavorite = this.favService.removePoke(pokemon)    
-    })){
-    }console.log(this.myFavorite)
+    this.favService.removePoke(pokemon)
+    this.favN = this.myFavorite$.value.length;
   }
 
-  showMore(): void {
+  showMore(): void{
     this.numberOfPokemon = this.numberOfPokemon + 50;
   }
-  showLess(): void {
+  showLess(): void{
     this.numberOfPokemon = this.numberOfPokemon - 50;
   }
 
@@ -57,6 +55,8 @@ export class PokeListComponent implements OnInit {
       this.pokemonList = this.mapPokemonEntry(val.pokemon_entries);
       this.pokemonListView = this.pokemonList;
     })
+
+    this.myFavorite$ = this.favService.getList()
   }
   mapPokemonEntry(pokemonEntry: IPokemonEntry[]):IMappedPokemonEntry[]{
     return pokemonEntry.map((pokemon: IPokemonEntry)=> ({

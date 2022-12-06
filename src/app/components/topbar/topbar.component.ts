@@ -12,7 +12,7 @@ import { IPokemonObject } from 'src/app/interfaces/pokemon.interface';
 export default class TopbarComponent implements OnInit, OnDestroy  {
   @Output() searchPokemonEvent = new EventEmitter <string> ()
   @Output() selectEvent = new EventEmitter <string> ()
-  
+  @Input() nFav:number
 
   onDestroy$ : Subject<void> = new Subject();
   searchControl :  FormControl = new FormControl('');

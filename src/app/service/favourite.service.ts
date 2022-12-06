@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { IPokemonEntry } from '../interfaces/pokemon.interface';
 
 @Injectable({
@@ -6,22 +7,17 @@ import { IPokemonEntry } from '../interfaces/pokemon.interface';
 })
 export class FavouriteService {
   pokemonList: IPokemonEntry[]=[]
-
+  pokemonList$: BehaviorSubject<IPokemonEntry[]>= new BehaviorSubject<IPokemonEntry[]>([])
   constructor() { }
-  getList():IPokemonEntry[]{
-    return this.pokemonList;
+  getList():BehaviorSubject<IPokemonEntry[]>{
+    return this.pokemonList$
   }
 
-  setPoke(pokemon:IPokemonEntry):IPokemonEntry[]{
-    this.pokemonList.push(pokemon)
-    return this.pokemonList
+  setPoke(pokemon:IPokemonEntry):void{
+    this.pokemonList$.next([...this.pokemonList$.value, pokemon])
   }
 
-  removePoke(pokemon:IPokemonEntry):IPokemonEntry[]{
-    this.pokemonList = this.pokemonList
-    .filter((val: IPokemonEntry)=>{
-      val.pokemon_species.name !== pokemon.pokemon_species.name
-    })
-    return this.pokemonList
+  removePoke(pokemon:IPokemonEntry):void{
+    this.pokemonList$.next([...this.pokemonList$.value.filter((val) => val !== pokemon)])
   }
 }

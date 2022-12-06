@@ -1,4 +1,4 @@
-<app-topbar (searchPokemonEvent)="onPokemonSearch($event)"></app-topbar>
+<app-topbar [nFav]="favN" (searchPokemonEvent)="onPokemonSearch($event)"></app-topbar>
 
 <mat-spinner value="100" class="spinner" *ngIf="showSpinner"></mat-spinner>
 
@@ -22,6 +22,8 @@
     <button (click)="showLess()" *ngIf="numberOfPokemon && !pokemonSearched" class='poke-list__btn-more' mat-raised-button color="primary">Mostra Meno</button>
   </div>
 </div>
-<router-outlet></router-outlet>
 
-<!-- <app-favourite-pokemon></app-favourite-pokemon> -->
+
+<ul *ngIf="myFavorite$ | async as preferiti">
+  <li *ngFor="let preferito of preferiti">{{preferito.pokemon_species.name}}</li>  
+</ul>

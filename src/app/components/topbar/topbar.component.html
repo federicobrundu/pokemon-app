@@ -4,7 +4,7 @@
   </a>
 
   <a routerLink="favorite" class="tob-bar__link">
-      <mat-icon  class="tob-bar__fav-icon" matBadge="2" matBadgeColor="accent">favorite</mat-icon>
+      <mat-icon  class="tob-bar__fav-icon" matBadge="{{nFav}}" matBadgeColor="accent">favorite</mat-icon>
   </a>
   <input  class='top-bar__text-search'[formControl]='searchControl' type="text" name='txtSearch' placeholder="Scrivi per cercare">
 </mat-toolbar>

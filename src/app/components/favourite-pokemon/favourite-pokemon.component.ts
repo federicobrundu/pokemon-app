@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { IPokemonEntry } from 'src/app/interfaces/pokemon.interface';
 import { FavouriteService } from 'src/app/service/favourite.service';
 
@@ -9,12 +10,11 @@ import { FavouriteService } from 'src/app/service/favourite.service';
 })
 export class FavouritePokemonComponent implements OnInit{
 
-  pokemonList :IPokemonEntry[]= []
+  favPkmList : BehaviorSubject<IPokemonEntry[]>
   
   constructor(private serviceFav: FavouriteService){
 
   }
-
 
   // handleHeart(pokemon: IPokemonEntry){
   //   if(this.pokemonList.find((item:IPokemonEntry)=>{
@@ -27,6 +27,6 @@ export class FavouritePokemonComponent implements OnInit{
   // } 
 
   ngOnInit(): void {
-    this.pokemonList = this.serviceFav.getList();
+    this.favPkmList=  this.serviceFav.getList();
   }
 }
