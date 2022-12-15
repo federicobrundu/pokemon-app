@@ -21,7 +21,7 @@ export class PokeListComponent implements OnInit {
   numberOfPokemon = 0;
   myFavorite$: BehaviorSubject<IPokemonEntry[]>; 
 
-  favN: number
+  favN: number= 0 
 
   constructor(private pokemonService: PokemonService, private route: ActivatedRoute, private favService: FavouriteService) {}
 
@@ -34,12 +34,10 @@ export class PokeListComponent implements OnInit {
 
   addFavorite(pokemon:IPokemonEntry){
     this.favService.setPoke(pokemon)
-    this.favN = this.myFavorite$.value.length;
   }
 
   removeFavorite(pokemon:IPokemonEntry){
     this.favService.removePoke(pokemon)
-    this.favN = this.myFavorite$.value.length;
   }
 
   showMore(): void{
@@ -55,8 +53,7 @@ export class PokeListComponent implements OnInit {
       this.pokemonList = this.mapPokemonEntry(val.pokemon_entries);
       this.pokemonListView = this.pokemonList;
     })
-
-    this.myFavorite$ = this.favService.getList()
+    this.favService.getList().subscribe((val)=> this.favN= val.length )
   }
   mapPokemonEntry(pokemonEntry: IPokemonEntry[]):IMappedPokemonEntry[]{
     return pokemonEntry.map((pokemon: IPokemonEntry)=> ({

@@ -21,6 +21,11 @@ import TopbarComponent from './components/topbar/topbar.component';
 import { PokeDetailsComponent } from './components/poke-details/poke-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FavouritePokemonComponent } from './components/favourite-pokemon/favourite-pokemon.component';
+import { StoreModule } from '@ngrx/store';
+import { PokemonService } from './service/pokemon.service';
+import { StoreDevtools } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools/src';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -44,6 +49,14 @@ import { FavouritePokemonComponent } from './components/favourite-pokemon/favour
     MatCardModule,
     MatProgressSpinnerModule,
     MatBadgeModule,
+    StoreModule.forRoot({
+      pokeList:() =>[PokemonService.toString]
+    }),
+    // StoreDevtoolsModule.instrument({
+    //   ...
+    // }),
+    EffectsModule.forRoot([])
+
   ],
   providers: [],
   bootstrap: [AppComponent]
