@@ -1,0 +1,22 @@
+.top-bar{
+    width: 100%;
+    justify-content: space-around;
+    height: 60px;
+    &__link{
+        text-decoration: none;
+        color: #fff;
+        height: 60%;
+        font-size: 20px;
+        font-weight: 500;   
+    }
+
+    &__text-search{
+        height: 50%;
+        padding-left: 6px;
+        border: 0;
+        border-radius: 8px;
+        font-weight: 400;
+    }
+    
+}
+.mat-icon{color: #fff!important;margin-top: 7px;}

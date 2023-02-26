@@ -20,6 +20,5 @@ export class PokemonService {
   loadPokemon():Observable<IPokemon> {
     return this.http.get<IPokemon>(API)
   }
-  
 
 }
