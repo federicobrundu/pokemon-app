@@ -25,5 +25,6 @@ export interface IPokemonObjectType{
     }
 }
 export interface IPokemon{
-    pokemon_entries:IPokemonEntry[]
+    pokemon_entries:IPokemonEntry[],
+    type:string
 }

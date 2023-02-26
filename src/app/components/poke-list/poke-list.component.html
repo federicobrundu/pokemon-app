@@ -13,8 +13,8 @@
         </mat-card-title>
         <mat-card-actions class="poke-list__actions">
           <a [routerLink]="pokemon.routerLink">Dettagli</a>
-            <button class="poke-list__btn-delete" (click)="removeFavorite(pokemon)"><mat-icon >cancel</mat-icon></button>
-            <button class="poke-list__btn-delete" (click)="addFavorite(pokemon)"><mat-icon >favorite</mat-icon></button>
+            <button class="poke-list__btn-delete" (click)="removeFav(pokemon)"><mat-icon >cancel</mat-icon></button>
+            <button class="poke-list__btn-delete" (click)="addFav(pokemon)"><mat-icon >favorite</mat-icon></button>
         </mat-card-actions>
       </mat-card>
     </ng-container>

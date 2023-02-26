@@ -1,9 +1,10 @@
-import { ViewEncapsulation } from '@angular/compiler';
-import {Component,EventEmitter,Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { BehaviorSubject, distinctUntilChanged, from } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject} from 'rxjs';
 import { IMappedPokemonEntry, IPokemon, IPokemonEntry } from 'src/app/interfaces/pokemon.interface';
 import { FavouriteService } from 'src/app/service/favourite.service';
+import { addFavourite, getListRequested, removeFavourite,  } from 'src/app/store/store.actions';
 import {PokemonService} from '../../service/pokemon.service';
 
 @Component({
@@ -14,6 +15,7 @@ import {PokemonService} from '../../service/pokemon.service';
 
 export class PokeListComponent implements OnInit {
 
+
   pokemonList: IMappedPokemonEntry[]= [];
   pokemonListView: IMappedPokemonEntry[]= [];
   pokemonSearched: string;
@@ -23,7 +25,7 @@ export class PokeListComponent implements OnInit {
 
   favN: number= 0 
 
-  constructor(private pokemonService: PokemonService, private route: ActivatedRoute, private favService: FavouriteService) {}
+  constructor(private pokemonService: PokemonService, private route: ActivatedRoute, private favService: FavouriteService, private store: Store) {}
 
   onPokemonSearch(pokemon: string){
     console.log(this.pokemonList)
@@ -32,12 +34,13 @@ export class PokeListComponent implements OnInit {
       .filter((pokemon:IMappedPokemonEntry) => pokemon.pokemon_species.name.includes(this.pokemonSearched))
   }
 
-  addFavorite(pokemon:IPokemonEntry){
-    this.favService.setPoke(pokemon)
+  addFav(pokemon:IPokemonEntry){
+    // this.favService.setPoke(pokemon)
+    this.store.dispatch(addFavourite({item:pokemon}))
   }
 
-  removeFavorite(pokemon:IPokemonEntry){
-    this.favService.removePoke(pokemon)
+  removeFav(pokemon:IPokemonEntry){
+    this.store.dispatch(removeFavourite({item:pokemon}))
   }
 
   showMore(): void{
@@ -48,6 +51,7 @@ export class PokeListComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.store.dispatch(getListRequested())
     this.pokemonService.loadPokemon()
     .subscribe((val: IPokemon) => {
       this.pokemonList = this.mapPokemonEntry(val.pokemon_entries);

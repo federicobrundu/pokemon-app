@@ -12,7 +12,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatBadgeModule} from '@angular/material/badge';
 
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,10 +21,10 @@ import { PokeDetailsComponent } from './components/poke-details/poke-details.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FavouritePokemonComponent } from './components/favourite-pokemon/favourite-pokemon.component';
 import { StoreModule } from '@ngrx/store';
-import { PokemonService } from './service/pokemon.service';
-import { StoreDevtools } from '@ngrx/store-devtools';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools/src';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { appReducers } from './store/index.reducers';
+import { PokemonEffects } from './store/store.effects';
 
 @NgModule({
   declarations: [
@@ -49,13 +48,16 @@ import { EffectsModule } from '@ngrx/effects';
     MatCardModule,
     MatProgressSpinnerModule,
     MatBadgeModule,
-    StoreModule.forRoot({
-      pokeList:() =>[PokemonService.toString]
+    StoreModule.forRoot(appReducers),
+    // StoreModule.forFeature(
+    //   pokemonFavKey, storeReducer
+    //   ),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
     }),
-    // StoreDevtoolsModule.instrument({
-    //   ...
-    // }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([
+      PokemonEffects
+    ])
 
   ],
   providers: [],
