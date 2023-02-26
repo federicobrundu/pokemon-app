@@ -11,7 +11,7 @@ export class FavouriteService {
   constructor() { }
   
   getLocalFav():void{
-    const localFav= localStorage.getItem('fav');
+    const localFav= localStorage.getItem('favourite');
     if(localFav){
       this.pokemonList$.next(JSON.parse(localFav))
     }
@@ -23,7 +23,7 @@ export class FavouriteService {
 
   setPoke(pokemon:IPokemonEntry):void{
     this.pokemonList$.next([...this.pokemonList$.value, pokemon])
-    localStorage.setItem('fav', JSON.stringify(this.pokemonList$.value))
+    localStorage.setItem('favourite', JSON.stringify(this.pokemonList$.value))
   }
 
   removePoke(pokemon:IPokemonEntry):void{

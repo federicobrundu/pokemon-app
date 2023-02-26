@@ -18,8 +18,8 @@
         </mat-card-actions>
       </mat-card>
     </ng-container>
-    <button (click)="showMore()" *ngIf="!pokemonSearched" class='poke-list__btn-more' mat-raised-button color="primary">Mostra Altro</button>
     <button (click)="showLess()" *ngIf="numberOfPokemon && !pokemonSearched" class='poke-list__btn-more' mat-raised-button color="primary">Mostra Meno</button>
+    <button (click)="showMore()" *ngIf="!pokemonSearched" class='poke-list__btn-more' mat-raised-button color="primary">Mostra Altro</button>
   </div>
 </div>
 

@@ -35,11 +35,12 @@ export class PokeListComponent implements OnInit {
   }
 
   addFav(pokemon:IPokemonEntry){
-    // this.favService.setPoke(pokemon)
+    this.favService.setPoke(pokemon)
     this.store.dispatch(addFavourite({item:pokemon}))
   }
 
   removeFav(pokemon:IPokemonEntry){
+    this.favService.removePoke(pokemon)
     this.store.dispatch(removeFavourite({item:pokemon}))
   }
 
@@ -51,13 +52,13 @@ export class PokeListComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.store.dispatch(getListRequested())
+    this.store.dispatch(getListRequested())
     this.pokemonService.loadPokemon()
     .subscribe((val: IPokemon) => {
       this.pokemonList = this.mapPokemonEntry(val.pokemon_entries);
       this.pokemonListView = this.pokemonList;
     })
-    this.favService.getList().subscribe((val)=> this.favN= val.length )
+    this.favService.getList().subscribe((val)=> console.log(this.favN= val.length) )
   }
   mapPokemonEntry(pokemonEntry: IPokemonEntry[]):IMappedPokemonEntry[]{
     return pokemonEntry.map((pokemon: IPokemonEntry)=> ({
